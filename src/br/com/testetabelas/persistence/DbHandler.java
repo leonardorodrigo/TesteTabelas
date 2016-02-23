@@ -19,13 +19,15 @@ public class DbHandler extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table training(_id INTEGER primary key autoincrement, level INTEGER NOT NULL, type TEXT NOT NULL);");
-        db.execSQL("create table exercise(_id INTEGER primary key autoincrement, );");
+        db.execSQL("create table exercise(_id INTEGER primary key autoincrement, name TEXT NOT NULL, eqNumber INTEGER NOT NULL);");
+        db.execSQL("create table training_exercise(idTraining INTEGER NOT NULL, idExercise INTEGER NOT NULL);");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table training");
         db.execSQL("drop table exercise");
+        db.execSQL("drop table training_exercise");
         onCreate(db);
     }
 }
