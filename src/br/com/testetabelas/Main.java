@@ -3,7 +3,7 @@ package br.com.testetabelas;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class MyActivity extends Activity {
+public class Main extends Activity {
     /**
      * Called when the activity is first created.
      */
