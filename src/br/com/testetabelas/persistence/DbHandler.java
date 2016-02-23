@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by desenvolv09 on 23/02/2016.
  */
-public class DbHandler extends SQLiteOpenHelper{
+public class DbHandler extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "db";
     private static final int DB_VERSION = 1;
@@ -19,7 +19,7 @@ public class DbHandler extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table training(_id INTEGER primary key autoincrement, level INTEGER NOT NULL, type TEXT NOT NULL);");
-        db.execSQL("create table exercise(_id INTEGER primary key autoincrement, name TEXT NOT NULL, eqNumber INTEGER NOT NULL);");
+        db.execSQL("create table exercise(_id INTEGER primary key autoincrement, name TEXT NOT NULL, eqNumber INTEGER NOT NULL, eqName TEXT NOT NULL);");
         db.execSQL("create table training_exercise(idTraining INTEGER NOT NULL, idExercise INTEGER NOT NULL);");
     }
 
@@ -30,4 +30,5 @@ public class DbHandler extends SQLiteOpenHelper{
         db.execSQL("drop table training_exercise");
         onCreate(db);
     }
+
 }
