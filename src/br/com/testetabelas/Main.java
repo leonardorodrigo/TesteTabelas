@@ -1,17 +1,19 @@
 package br.com.testetabelas;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CalendarView;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class Main extends Activity {
+public class Main extends Activity implements CompoundButton.OnCheckedChangeListener {
 
     CalendarView calendarView;
     RadioButton radioButtonGroupFat, radioButtonGroupHyper;
@@ -34,8 +36,11 @@ public class Main extends Activity {
         radioButtonHyp2 = (RadioButton) findViewById(R.id.hypertrophy_2);
         radioButtonHyp3 = (RadioButton) findViewById(R.id.hypertrophy_3);
 
+        initializeListenersRadioButtons();
         initializeCalendar();
         initializeGroups();
+
+        radioButtonGroupFat.setChecked(true);
     }
 
     @Override
@@ -57,6 +62,15 @@ public class Main extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void initializeListenersRadioButtons() {
+        radioButtonFat1.setOnCheckedChangeListener(this);
+        radioButtonFat2.setOnCheckedChangeListener(this);
+        radioButtonFat3.setOnCheckedChangeListener(this);
+        radioButtonHyp1.setOnCheckedChangeListener(this);
+        radioButtonHyp2.setOnCheckedChangeListener(this);
+        radioButtonHyp3.setOnCheckedChangeListener(this);
+    }
+
     private void initializeCalendar() {
         calendarView = (CalendarView) findViewById(R.id.calendar);
         calendarView.setShowWeekNumber(false);
@@ -64,12 +78,6 @@ public class Main extends Activity {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                Calendar calendarSelectedDate = Calendar.getInstance();
-//                calendarSelectedDate.set(year, month, day);
-//                if (calendarSelectedDate.before(Calendar.getInstance())) {
-//                    calendarView.setDate(Calendar.getInstance().getTime().getTime());
-//                }
-                Toast.makeText(getApplicationContext(), calendarSelectedDate.getTime().toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -81,9 +89,8 @@ public class Main extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    radioButtonFat1.setChecked(true);
-                    setEnableFatButtons(true);
-                    setEnableHyperButtons(false);
+                    setVisibilityFatButtons(true);
+                    setVisibilityHyperButtons(false);
                 }
             }
         });
@@ -91,9 +98,8 @@ public class Main extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    radioButtonHyp1.setChecked(true);
-                    setEnableFatButtons(false);
-                    setEnableHyperButtons(true);
+                    setVisibilityFatButtons(false);
+                    setVisibilityHyperButtons(true);
                 }
             }
         });
@@ -105,6 +111,25 @@ public class Main extends Activity {
 
     private void createNewTraining() {
 
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if (buttonView.getId() != R.id.group_fat && buttonView.getId() != R.id.group_hyper && isChecked) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(calendarView.getDate());
+            final RadioButton selected = (RadioButton) findViewById(buttonView.getId());
+            builder.setMessage(selected.getText() + "\n(" + calendar.getTime().toString() + ")\n" + "Confirma?");
+            builder.setPositiveButton("Sim", null);
+            builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    selected.setChecked(false);
+                }
+            });
+            builder.create().show();
+        }
     }
 
     private void setEnableFatButtons(boolean enable) {
@@ -128,4 +153,23 @@ public class Main extends Activity {
         radioButtonHyp2.setEnabled(enable);
         radioButtonHyp3.setEnabled(enable);
     }
+
+    private void setVisibilityFatButtons(boolean visible) {
+        if (!visible) {
+            radioButtonFat1.setChecked(false);
+            radioButtonFat2.setChecked(false);
+            radioButtonFat3.setChecked(false);
+        }
+        findViewById(R.id.radio_group_fat).setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    private void setVisibilityHyperButtons(boolean visible) {
+        if (!visible) {
+            radioButtonHyp1.setChecked(false);
+            radioButtonHyp2.setChecked(false);
+            radioButtonHyp3.setChecked(false);
+        }
+        findViewById(R.id.radio_group_thin).setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
 }

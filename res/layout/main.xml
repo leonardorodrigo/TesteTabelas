@@ -31,7 +31,9 @@
 
         <RadioGroup android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:id="@+id/radio_group_fat"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
             <RadioButton android:layout_width="wrap_content"
@@ -53,6 +55,8 @@
 
         <RadioGroup android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:id="@+id/radio_group_thin"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="vertical">
 

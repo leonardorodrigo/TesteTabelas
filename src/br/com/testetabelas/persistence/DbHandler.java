@@ -21,6 +21,7 @@ public class DbHandler extends SQLiteOpenHelper {
         db.execSQL("create table training(_id INTEGER primary key autoincrement, level INTEGER NOT NULL, type TEXT NOT NULL);");
         db.execSQL("create table exercise(_id INTEGER primary key autoincrement, name TEXT NOT NULL, eqNumber INTEGER NOT NULL, eqName TEXT NOT NULL);");
         db.execSQL("create table training_exercise(idTraining INTEGER NOT NULL, idExercise INTEGER NOT NULL);");
+        db.execSQL("create table entries(idTraining INTEGER primary key autoincrement, date TEXT NOT NULL);");
     }
 
     @Override
@@ -28,6 +29,7 @@ public class DbHandler extends SQLiteOpenHelper {
         db.execSQL("drop table training");
         db.execSQL("drop table exercise");
         db.execSQL("drop table training_exercise");
+        db.execSQL("drop table entries");
         onCreate(db);
     }
 
