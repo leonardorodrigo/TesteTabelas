@@ -25,7 +25,17 @@ public class Main extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        radioButtonFat1 = (RadioButton) findViewById(R.id.fat_burn_1);
+        radioButtonFat2 = (RadioButton) findViewById(R.id.fat_burn_2);
+        radioButtonFat3 = (RadioButton) findViewById(R.id.fat_burn_3);
+
+        radioButtonHyp1 = (RadioButton) findViewById(R.id.hypertrophy_1);
+        radioButtonHyp2 = (RadioButton) findViewById(R.id.hypertrophy_2);
+        radioButtonHyp3 = (RadioButton) findViewById(R.id.hypertrophy_3);
+
         initializeCalendar();
+        initializeGroups();
     }
 
     @Override
@@ -54,13 +64,21 @@ public class Main extends Activity {
         radioButtonGroupFat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                if (isChecked) {
+                    radioButtonFat1.setChecked(true);
+                    setEnableFatButtons(true);
+                    setEnableHyperButtons(false);
+                }
             }
         });
         radioButtonGroupHyper.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                if (isChecked) {
+                    radioButtonHyp1.setChecked(true);
+                    setEnableFatButtons(false);
+                    setEnableHyperButtons(true);
+                }
             }
         });
     }
@@ -85,5 +103,27 @@ public class Main extends Activity {
 
     private void createNewTraining() {
 
+    }
+
+    private void setEnableFatButtons(boolean enable) {
+        if (!enable) {
+            radioButtonFat1.setChecked(false);
+            radioButtonFat2.setChecked(false);
+            radioButtonFat3.setChecked(false);
+        }
+        radioButtonFat1.setEnabled(enable);
+        radioButtonFat2.setEnabled(enable);
+        radioButtonFat3.setEnabled(enable);
+    }
+
+    private void setEnableHyperButtons(boolean enable) {
+        if (!enable) {
+            radioButtonHyp1.setChecked(false);
+            radioButtonHyp2.setChecked(false);
+            radioButtonHyp3.setChecked(false);
+        }
+        radioButtonHyp1.setEnabled(enable);
+        radioButtonHyp2.setEnabled(enable);
+        radioButtonHyp3.setEnabled(enable);
     }
 }
