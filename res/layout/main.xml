@@ -10,15 +10,48 @@
                   android:layout_margin="10dp"
                   android:id="@+id/calendar"/>
 
+
     <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:orientation="vertical"
-                  android:layout_weight="1">
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
 
-        <Spinner android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"/>
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical"
+                      android:layout_weight="1">
 
-        <!-- view exe inside scrollview -->
+            <RadioButton android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="Queima calórica 1"/>
+
+            <RadioButton android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="Queima calórica 2"/>
+
+            <RadioButton android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="Queima calórica 3"/>
+
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical"
+                      android:layout_weight="1">
+
+            <RadioButton android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="Hipertrofia 1"/>
+
+            <RadioButton android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="Hipertrofia 2"/>
+
+            <RadioButton android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="Hipertrofia 3"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
