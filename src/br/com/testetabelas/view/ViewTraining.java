@@ -9,18 +9,19 @@ import br.com.testetabelas.model.Exercise;
 /**
  * Created by desenvolv09 on 23/02/2016.
  */
-public class ViewExercise {
+public class ViewTraining {
 
     private Context context;
     private TextView textViewDescription;
     private Exercise exercise;
 
-    public ViewExercise(Context context) {
+    public ViewTraining(Context context) {
         this.context = context;
         textViewDescription = (TextView) ((Activity) context).findViewById(R.id.description);
     }
 
     public void setExercise(Exercise exercise) {
         this.exercise = exercise;
+        textViewDescription.setText(exercise.getName());
     }
 }
