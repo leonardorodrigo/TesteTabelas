@@ -57,10 +57,26 @@ public class Main extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void initializeCalendar() {
+        calendarView = (CalendarView) findViewById(R.id.calendar);
+        calendarView.setShowWeekNumber(false);
+        calendarView.setFirstDayOfWeek(2);
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
+                Calendar calendarSelectedDate = Calendar.getInstance();
+//                calendarSelectedDate.set(year, month, day);
+//                if (calendarSelectedDate.before(Calendar.getInstance())) {
+//                    calendarView.setDate(Calendar.getInstance().getTime().getTime());
+//                }
+                Toast.makeText(getApplicationContext(), calendarSelectedDate.getTime().toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     private void initializeGroups() {
         radioButtonGroupFat = (RadioButton) findViewById(R.id.group_fat);
         radioButtonGroupHyper = (RadioButton) findViewById(R.id.group_hyper);
-
         radioButtonGroupFat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -79,20 +95,6 @@ public class Main extends Activity {
                     setEnableFatButtons(false);
                     setEnableHyperButtons(true);
                 }
-            }
-        });
-    }
-
-    private void initializeCalendar() {
-        calendarView = (CalendarView) findViewById(R.id.calendar);
-        calendarView.setShowWeekNumber(false);
-        calendarView.setFirstDayOfWeek(2);
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(year, month, day);
-                Toast.makeText(getApplicationContext(), calendar.getTime().toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
