@@ -11,6 +11,7 @@ import android.widget.CalendarView;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Main extends Activity implements CompoundButton.OnCheckedChangeListener {
@@ -113,6 +114,9 @@ public class Main extends Activity implements CompoundButton.OnCheckedChangeList
 
     }
 
+    private void createNewEntry() {
+    }
+
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -120,8 +124,14 @@ public class Main extends Activity implements CompoundButton.OnCheckedChangeList
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(calendarView.getDate());
             final RadioButton selected = (RadioButton) findViewById(buttonView.getId());
-            builder.setMessage(selected.getText() + "\n(" + calendar.getTime().toString() + ")\n" + "Confirma?");
-            builder.setPositiveButton("Sim", null);
+            builder.setMessage(selected.getText() + " (" + new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime()) + ")\n" + "Confirmar lançamento?");
+            builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    selected.setChecked(true);
+                    createNewEntry();
+                }
+            });
             builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -130,6 +140,24 @@ public class Main extends Activity implements CompoundButton.OnCheckedChangeList
             });
             builder.create().show();
         }
+    }
+
+    private void setVisibilityFatButtons(boolean visible) {
+        if (!visible) {
+            radioButtonFat1.setChecked(false);
+            radioButtonFat2.setChecked(false);
+            radioButtonFat3.setChecked(false);
+        }
+        findViewById(R.id.radio_group_fat).setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    private void setVisibilityHyperButtons(boolean visible) {
+        if (!visible) {
+            radioButtonHyp1.setChecked(false);
+            radioButtonHyp2.setChecked(false);
+            radioButtonHyp3.setChecked(false);
+        }
+        findViewById(R.id.radio_group_thin).setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     private void setEnableFatButtons(boolean enable) {
@@ -152,24 +180,6 @@ public class Main extends Activity implements CompoundButton.OnCheckedChangeList
         radioButtonHyp1.setEnabled(enable);
         radioButtonHyp2.setEnabled(enable);
         radioButtonHyp3.setEnabled(enable);
-    }
-
-    private void setVisibilityFatButtons(boolean visible) {
-        if (!visible) {
-            radioButtonFat1.setChecked(false);
-            radioButtonFat2.setChecked(false);
-            radioButtonFat3.setChecked(false);
-        }
-        findViewById(R.id.radio_group_fat).setVisibility(visible ? View.VISIBLE : View.GONE);
-    }
-
-    private void setVisibilityHyperButtons(boolean visible) {
-        if (!visible) {
-            radioButtonHyp1.setChecked(false);
-            radioButtonHyp2.setChecked(false);
-            radioButtonHyp3.setChecked(false);
-        }
-        findViewById(R.id.radio_group_thin).setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
 }
