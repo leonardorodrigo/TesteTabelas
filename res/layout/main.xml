@@ -4,55 +4,77 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <CalendarView android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:layout_weight="1"
-                  android:layout_margin="10dp"
-                  android:id="@+id/calendar"/>
+    <RadioGroup android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+        <RadioButton android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:id="@+id/group_fat"
+                     android:layout_weight="1"
+                     android:text="Queima calórica"/>
+
+        <RadioButton android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:layout_weight="1"
+                     android:id="@+id/group_hyper"
+                     android:text="Hipertrofia"/>
+
+    </RadioGroup>
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:orientation="horizontal">
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:orientation="vertical"
-                      android:layout_weight="1">
+        <RadioGroup android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-            <RadioButton android:layout_width="match_parent"
+            <RadioButton android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
+                         android:id="@+id/fat_burn_1"
                          android:text="Queima calórica 1"/>
 
-            <RadioButton android:layout_width="match_parent"
+            <RadioButton android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
+                         android:id="@+id/fat_burn_2"
                          android:text="Queima calórica 2"/>
 
-            <RadioButton android:layout_width="match_parent"
+            <RadioButton android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
+                         android:id="@+id/fat_burn_3"
                          android:text="Queima calórica 3"/>
 
-        </LinearLayout>
+        </RadioGroup>
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:orientation="vertical"
-                      android:layout_weight="1">
+        <RadioGroup android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-            <RadioButton android:layout_width="match_parent"
+            <RadioButton android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
+                         android:id="@+id/hypertrophy_1"
                          android:text="Hipertrofia 1"/>
 
-            <RadioButton android:layout_width="match_parent"
+            <RadioButton android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
+                         android:id="@+id/hypertrophy_2"
                          android:text="Hipertrofia 2"/>
 
-            <RadioButton android:layout_width="match_parent"
+            <RadioButton android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
+                         android:id="@+id/hypertrophy_3"
                          android:text="Hipertrofia 3"/>
 
-        </LinearLayout>
+        </RadioGroup>
 
     </LinearLayout>
+
+    <CalendarView android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:layout_weight="1"
+                  android:id="@+id/calendar"/>
 
 </LinearLayout>
