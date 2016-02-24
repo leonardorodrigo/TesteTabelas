@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import br.com.testetabelas.model.Exercise;
 import br.com.testetabelas.model.Training;
 
+import java.util.Date;
+
 /**
  * Created by desenvolv09 on 23/02/2016.
  */
@@ -38,6 +40,11 @@ public class Persistence {
             db.insert("training_exercise", null, contentValues);
         }
         return savedId;
+    }
+
+    public long insertEntry(String trainingName, Date date) {
+        ContentValues contentValues = new ContentValues();
+        return -1;
     }
 
 }
