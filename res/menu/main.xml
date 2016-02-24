@@ -4,14 +4,12 @@
             android:id="@+id/new_exercise"
             android:title="New exercise"
             android:showAsAction="ifRoom"
-            android:icon="@drawable/content_new_exe"
             android:visible="true"
     />
     <item
             android:id="@+id/new_training"
             android:title="New training"
             android:showAsAction="ifRoom"
-            android:icon="@drawable/content_new_tr"
             android:visible="true"
     />
 </menu>

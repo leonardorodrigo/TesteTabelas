@@ -6,16 +6,19 @@
 
     <RadioGroup android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/color_yellow"
                 android:orientation="horizontal">
 
         <RadioButton android:layout_width="match_parent"
                      android:layout_height="match_parent"
+                     android:textColor="@android:color/black"
                      android:id="@+id/group_fat"
                      android:layout_weight="1"
                      android:text="Queima calórica"/>
 
         <RadioButton android:layout_width="match_parent"
                      android:layout_height="match_parent"
+                     android:textColor="@android:color/black"
                      android:layout_weight="1"
                      android:id="@+id/group_hyper"
                      android:text="Hipertrofia"/>
